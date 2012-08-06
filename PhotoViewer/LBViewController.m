@@ -10,14 +10,11 @@
 
 @interface LBViewController ()
 
-@property (strong, nonatomic) IBOutlet LBPhotoViewer *photoViwer;
-
 @end
 
 @implementation LBViewController
-@synthesize photoViwer;
 
-#pragma mark - LBPhotoControllerDataSource
+#pragma mark - LBPhotoViewerDataSource
 
 -(NSInteger) numberOfPhotosForViewer:(LBPhotoViewer *)photoViewer {
   
@@ -37,12 +34,12 @@
 {
     [super viewDidLoad];
     
-    self.photoViwer = [[LBPhotoViewer alloc] initWithFrame:CGRectMake(0, 0, 320, 460)];
-    self.photoViwer.contentMode = UIViewContentModeScaleAspectFill;
-    self.photoViwer.dataSource = self;
-  
-  [self.view addSubview:self.photoViwer];
-    
+    LBPhotoViewer *photoViewer = [[LBPhotoViewer alloc] initWithFrame:CGRectMake(0, 0, 320, 460)];
+    photoViewer.effectDuration = 1;
+    photoViewer.timeToShowNext = 2;
+    photoViewer.contentMode = UIViewContentModeScaleAspectFill;
+    photoViewer.dataSource = self;
+    [self.view addSubview:photoViewer];
 }
 
 - (void)didReceiveMemoryWarning
