@@ -8,18 +8,22 @@ How to install
 1.	Clone this project
 2.	Copy LBPhotoViewer.h and LBPhotoViewer.m to your project
 3.	Import LBPhotoViewer in your header file (.h)
-4.	Add the photo viewer to your view:
-```objc
-	LBPhotoViewer *photoViewer = [[LBPhotoViewer alloc] initWithFrame:CGRectMake(0, 0, 320, 460)];
-	photoViewer.effectDuration = 1;
-	photoViewer.timeToShowNext = 2;
-	photoViewer.contentMode = UIViewContentModeScaleAspectFill;
-	photoViewer.dataSource = self;
-	[self.view addSubview:photoViewer];
-```
-5.	Supply a dataSource:
+4.	Add the photo viewer to your view and supply a dataSource:
 
 ```objc
+
+-(void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    LBPhotoViewer *photoViewer = [[LBPhotoViewer alloc] initWithFrame:CGRectMake(0, 0, 320, 460)];
+    photoViewer.effectDuration = 1;
+    photoViewer.timeToShowNext = 2;
+    photoViewer.contentMode = UIViewContentModeScaleAspectFill;
+    photoViewer.dataSource = self;
+    [self.view addSubview:photoViewer];
+}
+	
 -(NSInteger) numberOfPhotosForViewer:(LBPhotoViewer *)photoViewer {
 
 	return 4;
